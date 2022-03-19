@@ -2,7 +2,7 @@
 
 This is a project that aims to produce **a dynamic CRUD WebGL frontend** for MySQL (PDO) databases. Currently it's pretty rough and doesn't even handle field types. Treats all as string but with enough time, eventually it'll get updated. The reason I'm making this open source is that I hope it can get some contributions and get better with code added by them.
 
-Honestly, I'm a tech artist, not a coder. Tho I do know my way around, I certainly am not as full-fledged as a dedicated software developer/engineer. That's why, the project may look very badly written - because it probably is :)
+Honestly, **I'm a tech artist, not a coder**. Tho I do know my way around, I certainly am not as full-fledged as a dedicated software developer/engineer. That's why, the project may look very badly written - because it probably is :)
 
 Anyways. Here it is.
 
