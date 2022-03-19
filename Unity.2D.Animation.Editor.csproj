@@ -12,7 +12,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{66bae26b-520f-6140-dee6-24772ccf13fb}</ProjectGuid>
+    <ProjectGuid>{c18f17b7-bb59-2d94-902c-1e10a42d6b8f}</ProjectGuid>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -61,8 +61,8 @@
      <Compile Include="Library\PackageCache\com.unity.2d.animation@7.0.2\Editor\SpriteSkin\BoneGizmo.cs" />
      <Compile Include="Library\PackageCache\com.unity.2d.animation@7.0.2\Editor\SkinningModule\ModuleUtility.cs" />
      <Compile Include="Library\PackageCache\com.unity.2d.animation@7.0.2\Editor\SkinningModule\Triangulation\ITriangulator.cs" />
-     <Compile Include="Library\PackageCache\com.unity.2d.animation@7.0.2\Editor\SkinningModule\SkinningCache\MeshPreviewCache.cs" />
      <Compile Include="Library\PackageCache\com.unity.2d.animation@7.0.2\Editor\SkinningModule\VisibilityTool\VisibilityTool.cs" />
+     <Compile Include="Library\PackageCache\com.unity.2d.animation@7.0.2\Editor\SkinningModule\SkinningCache\MeshPreviewCache.cs" />
      <Compile Include="Library\PackageCache\com.unity.2d.animation@7.0.2\Editor\SpriteLib\SpriteLibraryDataProvider.cs" />
      <Compile Include="Library\PackageCache\com.unity.2d.animation@7.0.2\Editor\SkinningModule\IMGUI\RectSlider.cs" />
      <Compile Include="Library\PackageCache\com.unity.2d.animation@7.0.2\Editor\SpriteLib\SpriteLibraryAssetInspector.cs" />
@@ -511,37 +511,37 @@
      <HintPath>I:/UnityEditors/2021.2.7f1/Editor/Data/PlaybackEngines/LinuxStandaloneSupport/UnityEditor.LinuxStandalone.Extensions.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Plastic.Newtonsoft.Json">
-     <HintPath>M:/UnityProject/WebGL CRUD/Library/PackageCache/com.unity.collab-proxy@1.15.4/Lib/Editor/PlasticSCM/Unity.Plastic.Newtonsoft.Json.dll</HintPath>
+     <HintPath>M:/UnityProject/WebGL-CRUD-Unity/Library/PackageCache/com.unity.collab-proxy@1.15.4/Lib/Editor/PlasticSCM/Unity.Plastic.Newtonsoft.Json.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Plastic.Antlr3.Runtime">
-     <HintPath>M:/UnityProject/WebGL CRUD/Library/PackageCache/com.unity.collab-proxy@1.15.4/Lib/Editor/PlasticSCM/Unity.Plastic.Antlr3.Runtime.dll</HintPath>
+     <HintPath>M:/UnityProject/WebGL-CRUD-Unity/Library/PackageCache/com.unity.collab-proxy@1.15.4/Lib/Editor/PlasticSCM/Unity.Plastic.Antlr3.Runtime.dll</HintPath>
      </Reference>
      <Reference Include="unityplastic">
-     <HintPath>M:/UnityProject/WebGL CRUD/Library/PackageCache/com.unity.collab-proxy@1.15.4/Lib/Editor/PlasticSCM/unityplastic.dll</HintPath>
+     <HintPath>M:/UnityProject/WebGL-CRUD-Unity/Library/PackageCache/com.unity.collab-proxy@1.15.4/Lib/Editor/PlasticSCM/unityplastic.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Burst.Unsafe">
-     <HintPath>M:/UnityProject/WebGL CRUD/Library/PackageCache/com.unity.burst@1.6.0/Unity.Burst.Unsafe.dll</HintPath>
+     <HintPath>M:/UnityProject/WebGL-CRUD-Unity/Library/PackageCache/com.unity.burst@1.6.0/Unity.Burst.Unsafe.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Burst.Cecil.Mdb">
-     <HintPath>M:/UnityProject/WebGL CRUD/Library/PackageCache/com.unity.burst@1.6.0/Unity.Burst.CodeGen/Unity.Burst.Cecil.Mdb.dll</HintPath>
+     <HintPath>M:/UnityProject/WebGL-CRUD-Unity/Library/PackageCache/com.unity.burst@1.6.0/Unity.Burst.CodeGen/Unity.Burst.Cecil.Mdb.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Burst.Cecil.Pdb">
-     <HintPath>M:/UnityProject/WebGL CRUD/Library/PackageCache/com.unity.burst@1.6.0/Unity.Burst.CodeGen/Unity.Burst.Cecil.Pdb.dll</HintPath>
+     <HintPath>M:/UnityProject/WebGL-CRUD-Unity/Library/PackageCache/com.unity.burst@1.6.0/Unity.Burst.CodeGen/Unity.Burst.Cecil.Pdb.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Burst.Cecil">
-     <HintPath>M:/UnityProject/WebGL CRUD/Library/PackageCache/com.unity.burst@1.6.0/Unity.Burst.CodeGen/Unity.Burst.Cecil.dll</HintPath>
+     <HintPath>M:/UnityProject/WebGL-CRUD-Unity/Library/PackageCache/com.unity.burst@1.6.0/Unity.Burst.CodeGen/Unity.Burst.Cecil.dll</HintPath>
      </Reference>
      <Reference Include="log4netPlastic">
-     <HintPath>M:/UnityProject/WebGL CRUD/Library/PackageCache/com.unity.collab-proxy@1.15.4/Lib/Editor/PlasticSCM/log4netPlastic.dll</HintPath>
+     <HintPath>M:/UnityProject/WebGL-CRUD-Unity/Library/PackageCache/com.unity.collab-proxy@1.15.4/Lib/Editor/PlasticSCM/log4netPlastic.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Burst.Cecil.Rocks">
-     <HintPath>M:/UnityProject/WebGL CRUD/Library/PackageCache/com.unity.burst@1.6.0/Unity.Burst.CodeGen/Unity.Burst.Cecil.Rocks.dll</HintPath>
+     <HintPath>M:/UnityProject/WebGL-CRUD-Unity/Library/PackageCache/com.unity.burst@1.6.0/Unity.Burst.CodeGen/Unity.Burst.Cecil.Rocks.dll</HintPath>
      </Reference>
      <Reference Include="Newtonsoft.Json">
-     <HintPath>M:/UnityProject/WebGL CRUD/Library/PackageCache/com.unity.nuget.newtonsoft-json@2.0.0/Runtime/Newtonsoft.Json.dll</HintPath>
+     <HintPath>M:/UnityProject/WebGL-CRUD-Unity/Library/PackageCache/com.unity.nuget.newtonsoft-json@2.0.0/Runtime/Newtonsoft.Json.dll</HintPath>
      </Reference>
      <Reference Include="nunit.framework">
-     <HintPath>M:/UnityProject/WebGL CRUD/Library/PackageCache/com.unity.ext.nunit@1.0.6/net35/unity-custom/nunit.framework.dll</HintPath>
+     <HintPath>M:/UnityProject/WebGL-CRUD-Unity/Library/PackageCache/com.unity.ext.nunit@1.0.6/net35/unity-custom/nunit.framework.dll</HintPath>
      </Reference>
      <Reference Include="UnityEditor.iOS.Extensions.Xcode">
      <HintPath>I:/UnityEditors/2021.2.7f1/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
@@ -918,51 +918,51 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Unity.InternalAPIEditorBridge.001.csproj">
-      <Project>{37661213-1adf-3422-0193-2b79343e3dfa}</Project>
+      <Project>{cb2bffc6-f00a-f487-1453-3a86c2e9c918}</Project>
       <Name>Unity.InternalAPIEditorBridge.001</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.InternalAPIEngineBridge.001.csproj">
-      <Project>{c62f6952-7d1b-b321-77eb-6a1f9cbf2a6c}</Project>
+      <Project>{3577cb12-9277-8c30-c4ad-dcd5b40f4c23}</Project>
       <Name>Unity.InternalAPIEngineBridge.001</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.2D.Common.Editor.csproj">
-      <Project>{b21ac0ce-e8f5-07ca-3398-4b9c6d83a907}</Project>
+      <Project>{69dde7dd-7114-982d-f94f-07e3a78ec6d6}</Project>
       <Name>Unity.2D.Common.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.2D.Common.Runtime.csproj">
-      <Project>{6efa21db-710f-7414-699a-0fea27bdce28}</Project>
+      <Project>{4b3bbcd5-453e-8900-da23-57b4ded812b7}</Project>
       <Name>Unity.2D.Common.Runtime</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.2D.Animation.Runtime.csproj">
-      <Project>{2513bc96-3f88-3623-4b90-a75d114f93eb}</Project>
+      <Project>{cc2331ef-dd36-8603-7cb5-95b2e4d9dd1c}</Project>
       <Name>Unity.2D.Animation.Runtime</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.2D.Sprite.Editor.csproj">
-      <Project>{786e98da-5ef4-cc8e-5c2d-ad5734c7cb1e}</Project>
+      <Project>{40306e0f-4c9c-11e3-e613-1bfbc7f04b0b}</Project>
       <Name>Unity.2D.Sprite.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Mathematics.csproj">
-      <Project>{56bc04bc-a865-2409-b4e2-19360217b516}</Project>
+      <Project>{e244d012-2060-c572-901c-aa41d5af2a1e}</Project>
       <Name>Unity.Mathematics</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Burst.csproj">
-      <Project>{60b2464e-a582-8c0b-5b71-83fa93e90301}</Project>
+      <Project>{0af79df2-0cd2-41d1-3ba4-6481232be912}</Project>
       <Name>Unity.Burst</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEditor.UI.csproj">
-      <Project>{4fc1ea91-a2d4-e155-ab44-94dae7e47ad8}</Project>
+      <Project>{c02ac327-ea5b-b905-1ad9-7af4710d5155}</Project>
       <Name>UnityEditor.UI</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEngine.UI.csproj">
-      <Project>{f9d21b83-4e6f-8804-e7de-83b3471ceed6}</Project>
+      <Project>{4c692aab-d904-79ed-3998-fdc55bea9e1b}</Project>
       <Name>UnityEngine.UI</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEngine.TestRunner.csproj">
-      <Project>{6823bead-b1f9-af82-3fab-4fcd0767daf5}</Project>
+      <Project>{b72f7505-adbc-132c-fff6-e958e0df57fe}</Project>
       <Name>UnityEngine.TestRunner</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEditor.TestRunner.csproj">
-      <Project>{f52b0660-14a9-187d-b771-b3709847832c}</Project>
+      <Project>{5579970a-8787-e867-7471-99ffd2104903}</Project>
       <Name>UnityEditor.TestRunner</Name>
     </ProjectReference>
   </ItemGroup>
