@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html style="min-height: 100%">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+    <title>WebGL CRUD</title>
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/4.5.0/cosmo/bootstrap.min.css" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700&amp;display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Dosis&amp;subset=latin-ext" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css" />
+    <link rel="stylesheet" href="assets/css/Footer-Basic.css" />
+    <link rel="stylesheet" href="assets/css/Navigation-with-Button.css" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        function mobileCheck() {
+            let check = false;
+            (function (a) { if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4))) check = true; })(navigator.userAgent || navigator.vendor || window.opera);
+            return check;
+        }
+        window.onload = function () {
+            if (mobileCheck()) {
+                $('#mobileModal').modal('show');
+            }
+            $("#closeLeave").click(function () {
+                closePage();
+            })
+        }
+
+        function closePage() {
+            window.open('', '_parent', '');
+            window.close();
+        }
+        window.onerror = function (message, source, lineno, colno, error) {
+            let err = $('#errorModal');
+            let errText = $('#errorModalText');
+            errText.innerText = "Unfortunately an error occured while running Unity WebGL content. The error occured on line:" + lineno + " column:" + colno + "<br><br>" + "Error message:" + message;
+            err.modal('show');
+        };
+        $('#reloadPage').click(function () {
+            window.location.reload();
+        })
+    </script>
+</head>
+
+<body>
+    <!-------------------------------------------------------------------------------------------------------------------
+    |
+    |  Start: Mobile browser check modal. 
+    |
+    ------------------------------------------------------------------------------------------------------------------->
+    <div class="modal fade" role="dialog" tabindex="-1" id="mobileModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Mobile Browser</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        We detected that you are visiting this web page using a mobile
+                        browser. Normally, Unity WebGL does not support mobile browsers
+                        directly but if your device is a high end device, you can still
+                        try loading the page but we do not guarantee flawless execution.
+                        Choose an option below:
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-light" type="button" data-dismiss="modal">
+                        Visit the page anyway</button><button class="btn btn-primary" id="closeLeave" type="button">
+                        Close this and leave
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-------------------------------------------------------------------------------------------------------------------
+    |
+    |  End: Mobile browser check modal. 
+    |
+    -------------------------------------------------------------------------------------------------------------------->
+
+    <!------------------------------------------------------------------------------------------------------------------- 
+    |
+    |  Start: Error modal. 
+    |
+    -------------------------------------------------------------------------------------------------------------------->
+    <div class="modal fade" role="dialog" tabindex="-1" id="errorMobile">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">An! Error Occured</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="errorModalText">
+                        We detected that you are visiting this web page using a mobile
+                        browser. Normally, Unity WebGL does not support mobile browsers
+                        directly but if your device is a high end device, you can still
+                        try loading the page but we do not guarantee flawless execution.
+                        Choose an option below:
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-light" id="reloadPage" type="button" data-dismiss="modal">
+                        Reload immediately</button><button class="btn btn-primary" type="button">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!------------------------------------------------------------------------------------------------------------------- 
+    |
+    |  End: Error modal. 
+    |
+    -------------------------------------------------------------------------------------------------------------------->
+
+    <!------------------------------------------------------------------------------------------------------------------- 
+    |
+    |  Start: Custom tags coming from unity. 
+    |
+    |  Possible choices: 
+    |   BLOCKS = empty : Tetris inspired game button is shown.
+    |   BLOCKS = disable : Tetris inspired game button is hidden
+    |
+    |   Navigation = empty : Navigation menu is shown.
+    |   Navigation = disable : Navigation menu is hidden.
+    |
+    |   Layout = empty : Tall layout is shown, others hidden.
+    |   Layout = Minimal : Minimal layout is shown, others hidden.
+    |   Layout = Compact : Compact layout is shown, others hidden.
+    |
+    |   Autoload = empty : Off. Need to press the button to load.
+    |   Autoload = enable : On. Automatically loads the app without user input.
+    |
+    -------------------------------------------------------------------------------------------------------------------->
+
+    <div>
+        <span id="tetrisTag"></span><span id="navTag">disable</span><span
+            id="layoutTag">minimal</span><span id="autoLoadTag">enable</span>
+    </div>
+
+    <!------------------------------------------------------------------------------------------------------------------- 
+    |
+    |  End: Custom tags. 
+    |
+    -------------------------------------------------------------------------------------------------------------------->
+    
+
+    <!------------------------------------------------------------------------------------------------------------------- 
+    |
+    |  Start: Top loader bar. 
+    |
+    -------------------------------------------------------------------------------------------------------------------->
+
+ 
+    
+
+    <!------------------------------------------------------------------------------------------------------------------- 
+    |
+    |  End: Top loader bar. 
+    |
+    -------------------------------------------------------------------------------------------------------------------->
+
+    <!------------------------------------------------------------------------------------------------------------------- 
+    |
+    |  Start: Navigation. 
+    |  Standart navigation from Bootstrap. You may configure accordingly.
+    |
+    -------------------------------------------------------------------------------------------------------------------->
+
+    <nav class="navbar navbar-light navbar-expand sticky-top navigation-clean-button" id="navig"
+        style="padding: 5px; background-color: rgb(218, 218, 218)">
+        <div class="container">
+            <a class="navbar-brand" href="#"><img src="assets/img/DummyLogo.png"
+                    style="max-width: 80px; height: auto" /></a><button data-toggle="collapse" class="navbar-toggler"
+                data-target="#navcol-1">
+                <span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav mr-auto">
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link active" href="#">Home</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" href="#">Game</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false"
+                            href="#">Dropdown
+                        </a>
+                        <div class="dropdown-menu" role="menu">
+                            <a class="dropdown-item" role="presentation" href="#">Choice 1</a><a class="dropdown-item"
+                                role="presentation" href="#">Choice 2</a><a class="dropdown-item" role="presentation"
+                                href="#">Choice 3</a>
+                        </div>
+                    </li>
+                </ul>
+                <span class="navbar-text actions">
+                    <a class="login" href="#">Log In</a><a class="btn btn-primary action-button" role="button" href="#"
+                        style="background-color: rgb(0, 123, 255)">Sign Up</a></span>
+            </div>
+        </div>
+    </nav>
+    <!------------------------------------------------------------------------------------------------------------------- 
+    |
+    |  End: Navigation. 
+    |
+    -------------------------------------------------------------------------------------------------------------------->
+
+    <!------------------------------------------------------------------------------------------------------------------- 
+    |
+    |  Start: Compact layout setup. 
+    |
+    -------------------------------------------------------------------------------------------------------------------->
+    <section id="FrontPage-Compact">
+        <div class="container-fluid">
+            <div></div>
+        </div>
+        <section>
+            <div class="container-fluid" style="max-width: 900px">
+                <div class="row text-center justify-content-center" style="margin-top: 17px">
+                    <div class="col">
+                        <img src="assets/img/DummyLogo.png" style="max-width: 100px" />
+                        <h2 style="font-weight: bold; padding: 12px">
+                            The awesome application is loading...
+                        </h2>
+                    </div>
+                    <div class="col">
+                        <h5 style="font-weight: bold; padding: 12px">
+                            Some awesome Title
+                        </h5>
+                        <p class="text-justify">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Phasellus lorem justo, porttitor eu lacinia a, commodo vitae
+                            neque. Curabitur pellentesque blandit sapien consequat bibendum.
+                            Nam lacinia felis a commodo laoreet. Quisque laoreet, risus ac
+                            fringilla aliquet, augue metus condimentum velit, quis congue
+                            libero elit at eros. Morbi condimentum lectus non metus
+                            facilisis cursus. Nam id dapibus elit. Praesent quis purus ac
+                            massa ornare porttitor non quis ipsum.<br />
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p class="text-center">
+                            Our application can be safely run on the latest versions of
+                            Apple Safari, Opera, Microsoft Edge, Mozilla Firefox and Google
+                            Chrome browsers. While other Chromium based browser might work,
+                            we recommend the mentioned browsers for highest
+                            compatibility.<br /><br /><a href="https://support.apple.com/downloads/safari"
+                                target="_blank"><i class="fab fa-safari" style="
+                      font-size: 51px;
+                      margin-right: 10px;
+                      color: rgb(87, 94, 101);
+                    "></i></a><a href="https://www.opera.com/download" target="_blank"><i class="fab fa-opera" style="
+                      font-size: 51px;
+                      margin-right: 10px;
+                      color: rgb(87, 94, 101);
+                    "></i></a><a href="https://www.microsoft.com/en-us/edge" target="_blank"><i class="fab fa-edge"
+                                    style="
+                      font-size: 51px;
+                      margin-right: 10px;
+                      color: rgb(87, 94, 101);
+                    "></i></a>
+                            <a href="https://www.mozilla.org/en-US/firefox/new/" target="_blank"><i
+                                    class="fab fa-firefox" style="
+                      font-size: 51px;
+                      margin-right: 10px;
+                      color: rgb(87, 94, 101);
+                    "></i></a><a href="https://www.google.com/chrome/" target="_blank"><i class="fab fa-chrome"
+                                    style="font-size: 51px; color: rgb(87, 94, 101)"></i></a>
+                        </p>
+                    </div>
+                    <div class="col offset-xl-0 text-center">
+                        <div class="text-center" style="margin: 10px;"> <!----- LOAD BUTTON ----->
+                            <button class="btn btn-primary startUnity" type="button"
+                                onclick="startLoading();">
+                                Start Loading Applicaiton
+                            </button>
+                        </div>
+                        <div class="progress" id="theBar"
+                        style="min-height: 100%; border-radius: 15px">
+                            <div class="progress-bar bg-success progress-bar-striped progress-bar-animated prog"
+                                aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="progbar" style="width: 0%; font-size: 23px !important;">
+                                0%
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="text-center">
+                            <canvas id="tetris1" width="400" height="400" style="display: none"></canvas><br />
+                            <button id="playbutton1" class="btn btn-primary" type="button"
+                                onclick="playButtonClicked();">
+                                Click to play blocks game while waiting
+                            </button>
+                            <h3 id="score">Score:&nbsp;</h3>
+                        </div>
+                        <hr style="
+                  border-width: 5px;
+                  border-radius: 52px;
+                  margin-top: 10px;
+                  margin-bottom: 40px;
+                " />
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+    <!------------------------------------------------------------------------------------------------------------------- 
+    |
+    |  End: Compact layout setup. 
+    |
+    -------------------------------------------------------------------------------------------------------------------->
+
+    <!------------------------------------------------------------------------------------------------------------------- 
+    |
+    |  Start: Minimal layout setup.
+    |
+    -------------------------------------------------------------------------------------------------------------------->
+    <section id="FrontPage-Minimal">
+        <div class="container-fluid">
+            <div></div>
+        </div>
+        <section>
+            <div class="container-fluid" style="max-width: 900px">
+                
+                <div class="progress" id="theBar"
+                style="min-height: 50px; border-radius: 15px">
+                <div class="progress-bar bg-success progress-bar-striped progress-bar-animated prog"
+                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="progbar" style="width: 0%; font-size: 23px !important;">
+                    0%
+                </div>
+            </div>
+                <div class="row text-center justify-content-center" style="margin-top: 17px">
+                    <div class="col">
+                        
+                    </div>
+                    <div class="col">
+                        <div class="text-center" style="margin: 10px;"> <!----- LOAD BUTTON ----->
+                            <button class="btn btn-primary startUnity" type="button"
+                                onclick="startLoading();">
+                                Start Loading Applicaiton
+                            </button>
+                        </div>
+                        <p class="text-center" style="margin-top: 10px">
+                         
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col text-center">
+                        <hr style="
+                  border-width: 5px;
+                  border-radius: 52px;
+                  margin-top: 10px;
+                  margin-bottom: 0;
+                " />
+                        <div class="text-center">
+                            <canvas id="tetris2" width="400" height="400" style="display: none"></canvas><br />
+                            <button id="playbutton2" class="btn btn-primary" type="button"
+                                onclick="playButtonClicked();">
+                                Click to play blocks game while waiting
+                            </button>
+                            <h3 id="score">Score:&nbsp;</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+    <!------------------------------------------------------------------------------------------------------------------- 
+    |
+    |  End: Minimal layout setup.
+    |
+    -------------------------------------------------------------------------------------------------------------------->
+
+    <!------------------------------------------------------------------------------------------------------------------- 
+    |
+    |  Start: Tall layout setup. Default one.
+    |
+    -------------------------------------------------------------------------------------------------------------------->
+    <section id="FrontPage-Tall">
+        <div class="container-fluid">
+            <div></div>
+        </div>
+        <section>
+            <div class="container-fluid" style="max-width: 900px">
+                <div class="row text-center justify-content-center" style="margin-top: 17px">
+                    <div class="col">
+                        <img src="assets/img/DummyLogo.png" style="max-width: 80px" />
+                        <h2 style="font-weight: bold; padding: 12px">
+                            The awesome application is loading...
+                        </h2>
+                        <h5 style="font-weight: bold; padding: 12px">
+                            Some awesome Title
+                        </h5>
+                        <p class="text-justify">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Phasellus lorem justo, porttitor eu lacinia a, commodo vitae
+                            neque. Curabitur pellentesque blandit sapien consequat bibendum.
+                            Nam lacinia felis a commodo laoreet. Quisque laoreet, risus ac
+                            fringilla aliquet, augue metus condimentum velit, quis congue
+                            libero elit at eros. Morbi condimentum lectus non metus
+                            facilisis cursus. Nam id dapibus elit. Praesent quis purus ac
+                            massa ornare porttitor non quis ipsum.<br />
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="progress" id="theBar"
+                            style="min-height: 50px; border-radius: 15px">
+                            <div class="progress-bar bg-success progress-bar-striped progress-bar-animated prog"
+                                aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="progbar" style="width: 0%; font-size: 23px !important;">
+                                0%
+                            </div>
+                        </div>
+                    <div class="col text-center">
+                        <div class="text-center" style="margin: 10px;"> <!----- LOAD BUTTON ----->
+                            <button class="btn btn-primary startUnity" type="button"
+                                onclick="startLoading();">
+                                Start Loading Applicaiton
+                            </button>
+                        </div>
+                        
+                        <div class="text-center">
+                            <canvas id="tetris3" width="400" height="400" style="display: none"></canvas><br />
+                            <button id="playbutton3" class="btn btn-primary" type="button"
+                                onclick="playButtonClicked();">
+                                Click to play blocks game while waiting
+                            </button>
+                            <h3 id="score">Score:&nbsp;</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col text-center">
+                        <hr style="
+                  border-width: 5px;
+                  border-radius: 52px;
+                  margin-top: 10px;
+                  margin-bottom: 40px;
+                " />
+                        <p class="text-center">
+                            Our application can be safely run on the latest versions of
+                            Apple Safari, Opera, Microsoft Edge, Mozilla Firefox and Google
+                            Chrome browsers. While other Chromium based browsers might work,
+                            we recommend the mentioned browsers for highest
+                            compatibility.<br /><br /><a href="https://support.apple.com/downloads/safari"
+                                target="_blank"><i class="fab fa-safari" style="
+                      font-size: 51px;
+                      margin-right: 10px;
+                      color: rgb(87, 94, 101);
+                    "></i></a><a href="https://www.opera.com/download" target="_blank"><i class="fab fa-opera" style="
+                      font-size: 51px;
+                      margin-right: 10px;
+                      color: rgb(87, 94, 101);
+                    "></i></a><a href="https://www.microsoft.com/en-us/edge" target="_blank"><i class="fab fa-edge"
+                                    style="
+                      font-size: 51px;
+                      margin-right: 10px;
+                      color: rgb(87, 94, 101);
+                    "></i></a>
+                            <a href="https://www.mozilla.org/en-US/firefox/new/" target="_blank"><i
+                                    class="fab fa-firefox" style="
+                      font-size: 51px;
+                      margin-right: 10px;
+                      color: rgb(87, 94, 101);
+                    "></i></a><a href="https://www.google.com/chrome/" target="_blank"><i class="fab fa-chrome"
+                                    style="font-size: 51px; color: rgb(87, 94, 101)"></i></a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+    <!------------------------------------------------------------------------------------------------------------------- 
+    |
+    |  End: Tall layout setup. 
+    |
+    -------------------------------------------------------------------------------------------------------------------->
+
+    <!------------------------------------------------------------------------------------------------------------------- 
+    |
+    |  Start: Footer.
+    |
+    -------------------------------------------------------------------------------------------------------------------->
+    <div id="footer-basic" class="footer-basic" style="background-color: rgba(255, 255, 255, 0)">
+        <hr style="
+          border-width: 5px;
+          border-radius: 52px;
+          margin-top: 10px;
+          margin-bottom: 40px;
+        " />
+        <footer>
+            <div class="social">
+                <a id="insta" href=""><i class="icon ion-social-instagram"></i></a><a id="twit" href=""><i
+                        class="icon ion-social-twitter"></i></a><a id="face" href=""><i
+                        class="icon ion-social-facebook"></i></a>
+            </div>
+            <p class="copyright" style="margin-top: 0; color: rgb(109, 96, 96)">
+                
+            </p>
+        </footer>
+    </div>
+    <!------------------------------------------------------------------------------------------------------------------- 
+    |
+    |  End: Footer. 
+    |
+    -------------------------------------------------------------------------------------------------------------------->
+
+    <!-------------------------------------------------------------------------------------------------------------------
+    |
+    |  WOULD NOT RECOMMEND TOUCHING ANYTHING BELOW UNLESS YOU EXACTLY KNOW WHAT YOU ARE DOING.
+    |
+    --------------------------------------------------------------------------------------------------------------------> 
+    <section id="unityContainer" style="min-height: 100%; position: fixed; min-width: 100%; display: none">
+        <canvas id="gameContainer"></canvas>
+    </section>
+    <script src="Build/UnityCRUDBuild.loader.js"></script>
+    <script>
+        if("" == "") 
+        {
+            document.getElementById('insta').style.display = "none";
+        }
+        if("" == "") 
+        {
+            document.getElementById('twit').style.display = "none";
+        }
+        if("" == "") 
+        {
+            document.getElementById('face').style.display = "none";
+        }
+        function startLoading()
+        {
+            var btns = document.getElementsByClassName("startUnity")
+                for (i = 0; i < btns.length; i++) {
+                    btns[i].setAttribute("style", "display:none !important");;
+                }
+        var buildUrl = "Build";
+        var loaderUrl = buildUrl + "/UnityCRUDBuild.loader.js";
+        var config = {
+            dataUrl: buildUrl + "/UnityCRUDBuild.data.unityweb",
+            frameworkUrl: buildUrl + "/UnityCRUDBuild.framework.js.unityweb",
+            codeUrl: buildUrl + "/UnityCRUDBuild.wasm.unityweb",
+              streamingAssetsUrl: "StreamingAssets",
+            companyName: "DefaultCompany",
+            productName: "WebGL CRUD",
+            productVersion: "1.0",
+        };
+
+
+        var canvas = document.querySelector("#gameContainer");
+
+        (function () {
+            const unityGameContainer = document.getElementById('gameContainer');
+            const initialDimensions = { width: parseInt(unityGameContainer.style.width, 10), height: parseInt(unityGameContainer.style.height, 10) };
+            unityGameContainer.style.width = '100%';
+            unityGameContainer.style.height = '100%';
+            unityGameContainer.style.position = 'fixed';
+            let cnv = null;
+            const cnvFromMuts = (mutationsList) => {
+                for (let mutationItem of mutationsList) {
+                    for (let addedNode of mutationItem.addedNodes) {
+                        if (addedNode.id === '#canvas') {
+                            return addedNode;
+                        }
+                    }
+                }
+                return null;
+            }
+            const SetSize = () => {
+                unityGameContainer.style.position = 'absolute';
+                cnv.style.display = 'none';
+                var winW = parseInt(window.getComputedStyle(unityGameContainer).width, 10);
+                var winH = parseInt(window.getComputedStyle(unityGameContainer).height, 10);
+                var scale = Math.min(winW / initialDimensions.width, winH / initialDimensions.height);
+                cnv.style.display = '';
+                cnv.style.width = 'auto';
+                cnv.style.height = 'auto';
+                var fitW = Math.round(initialDimensions.width * scale * 100) / 100;
+                var fitH = Math.round(initialDimensions.height * scale * 100) / 100;
+                cnv.setAttribute('width', fitW);
+                cnv.setAttribute('height', fitH);
+            }
+
+            window.setDimensions = SetSize;
+
+            const regCnv = () => {
+                let debounceTimeout = null;
+                const debouncedSetDimensions = () => {
+                    if (debounceTimeout !== null) {
+                        clearTimeout(debounceTimeout);
+                    }
+                    debounceTimeout = setTimeout(SetSize, 200);
+                }
+                window.addEventListener('resize', debouncedSetDimensions, false);
+                SetSize();
+            }
+
+            const i = 0;
+            new MutationObserver(function (mutationsList) {
+                const canvas = cnvFromMuts(mutationsList)
+                if (canvas) {
+                    cnv = canvas;
+                    regCnv();
+
+                    new MutationObserver(function (attributesMutation) {
+                        this.disconnect();
+                        setTimeout(SetSize, 1)
+                    }).observe(canvas, { attributes: true });
+
+                    this.disconnect();
+                }
+            }).observe(unityGameContainer, { childList: true });
+
+        })();
+
+
+        createUnityInstance(canvas, config, (progress) => {
+            var progs = document.getElementsByClassName("prog")
+            for (i = 0; i < progs.length; i++) {
+                canvas.progress = progs[i];
+                canvas.progress.setAttribute("aria-valuenow", (105.2 * progress));
+                canvas.progress.setAttribute("style", "width: " + (105.2 * progress).toFixed(1) + "%; font-size: 23px !important");
+                canvas.progress.innerText = (105.2 * progress).toFixed(1) + "%";
+            }
+            if (progress == 1) {
+                document.getElementById("FrontPage-Minimal").setAttribute("style", "display:none !important");
+                document.getElementById("FrontPage-Tall").setAttribute("style", "display:none !important");
+                document.getElementById("FrontPage-Compact").setAttribute("style", "display:none !important");
+                document.getElementById("footer-basic").setAttribute("style", "display:none !important");
+                document.getElementById("unityContainer").setAttribute("style", "min-height: 100%; position: fixed;  min-width: 100%;  display: block;");
+
+                var progs2 = document.getElementsByClassName("prog")
+                for (i = 0; i < progs2.length; i++) {
+                    progs2[i].setAttribute("style", "display:none !important");;
+                }
+            }
+        })
+        }
+        var notet = document.getElementById('tetrisTag').innerText;
+
+        if (notet == "disable") {
+            document.getElementById('playbutton1').disabled = true;
+            document.getElementById('playbutton1').style.display = "none";
+            document.getElementById('playbutton2').disabled = true;
+            document.getElementById('playbutton2').style.display = "none";
+            document.getElementById('playbutton3').disabled = true;
+            document.getElementById('playbutton3').style.display = "none";
+        }
+
+        var nonav = document.getElementById('navTag').innerText;
+
+        if (nonav == "disable") {
+            document.getElementById('navig').disabled = true;
+            document.getElementById('navig').style.display = "none";
+            document.getElementById('FrontPage-Compact').style.marginTop = "115px";
+            document.getElementById('FrontPage-Minimal').style.marginTop = "115px";
+            document.getElementById('FrontPage-Tall').style.marginTop = "115px";
+        }
+
+        var layout = document.getElementById('layoutTag').innerText;
+
+        if (layout == "minimal") {
+            document.getElementById('FrontPage-Tall').disabled = true;
+            document.getElementById('FrontPage-Tall').style.display = "none";
+
+            document.getElementById('FrontPage-Minimal').disabled = false;
+            document.getElementById('FrontPage-Minimal').style.display = "block";
+        }
+        if (layout == "compact") {
+            document.getElementById('FrontPage-Tall').disabled = true;
+            document.getElementById('FrontPage-Tall').style.display = "none";
+
+            document.getElementById('FrontPage-Compact').disabled = false;
+            document.getElementById('FrontPage-Compact').style.display = "block";
+        }
+
+        var autoload = document.getElementById('autoLoadTag').innerText;
+        if (autoload == "enable") {
+            var btns = document.getElementsByClassName("startUnity")
+            for (i = 0; i < btns.length; i++) {
+                btns[i].setAttribute("style", "display:none !important");;
+            }
+            startLoading();
+        }
+
+        var COLS = 14, ROWS = 14;
+        var board = [];
+        var lose;
+        var interval;
+        var intervalRender;
+        var current; // current moving shape
+        var currentX, currentY; // position of current shape
+        var freezed; // is current shape settled on the board?
+        var score;
+        var shapes = [
+            [1, 1, 1, 1],
+            [1, 1, 1, 0,
+                1],
+            [1, 1, 1, 0,
+                0, 0, 1],
+            [1, 1, 0, 0,
+                1, 1],
+            [1, 1, 0, 0,
+                0, 1, 1],
+            [0, 1, 1, 0,
+                1, 1],
+            [0, 1, 0, 0,
+                1, 1, 1]
+        ];
+        var colors = [
+            'gray', 'gray', 'gray', 'gray', 'gray', 'gray', 'gray'
+        ];
+
+        // creates a new 4x4 shape in global variable 'current'
+        // 4x4 so as to cover the size when the shape is rotated
+        function newShape() {
+            var id = Math.floor(Math.random() * shapes.length);
+            var shape = shapes[id]; // maintain id for color filling
+            score += 10;
+            document.getElementById('score').innerHTML = 'Score:' + score;
+
+            current = [];
+            for (var y = 0; y < 4; ++y) {
+                current[y] = [];
+                for (var x = 0; x < 4; ++x) {
+                    var i = 4 * y + x;
+                    if (typeof shape[i] != 'undefined' && shape[i]) {
+                        current[y][x] = id + 1;
+                    }
+                    else {
+                        current[y][x] = 0;
+                    }
+                }
+            }
+
+            // new shape starts to move
+            freezed = false;
+            // position where the shape will evolve
+            currentX = 5;
+            currentY = 0;
+        }
+
+        // clears the board
+        function init() {
+            for (var y = 0; y < ROWS; ++y) {
+                board[y] = [];
+                for (var x = 0; x < COLS; ++x) {
+                    board[y][x] = 0;
+                }
+            }
+        }
+
+        // keep the element moving down, creating new shapes and clearing lines
+        function tick() {
+            if (valid(0, 1)) {
+                ++currentY;
+            }
+            // if the element settled
+            else {
+                freeze();
+                valid(0, 1);
+                clearLines();
+                if (lose) {
+                    clearAllIntervals();
+                    return false;
+                }
+                newShape();
+            }
+        }
+
+        // stop shape at its position and fix it to board
+        function freeze() {
+            for (var y = 0; y < 4; ++y) {
+                for (var x = 0; x < 4; ++x) {
+                    if (current[y][x]) {
+                        board[y + currentY][x + currentX] = current[y][x];
+                    }
+                }
+            }
+            freezed = true;
+        }
+
+        // returns rotates the rotated shape 'current' perpendicularly anticlockwise
+        function rotate(current) {
+            var newCurrent = [];
+            for (var y = 0; y < 4; ++y) {
+                newCurrent[y] = [];
+                for (var x = 0; x < 4; ++x) {
+                    newCurrent[y][x] = current[3 - x][y];
+                }
+            }
+
+            return newCurrent;
+        }
+
+        // check if any lines are filled and clear them
+        function clearLines() {
+            for (var y = ROWS - 1; y >= 0; --y) {
+                var rowFilled = true;
+                for (var x = 0; x < COLS; ++x) {
+                    if (board[y][x] == 0) {
+                        rowFilled = false;
+                        break;
+                    }
+                }
+                if (rowFilled) {
+                    score += 25;
+                    document.getElementById('score').innerHTML = 'Score:' + score;
+                    for (var yy = y; yy > 0; --yy) {
+                        for (var x = 0; x < COLS; ++x) {
+                            board[yy][x] = board[yy - 1][x];
+                        }
+                    }
+                    ++y;
+                }
+            }
+        }
+
+        function keyPress(key) {
+            switch (key) {
+                case 'left':
+                    if (valid(-1)) {
+                        --currentX;
+                    }
+                    break;
+                case 'right':
+                    if (valid(1)) {
+                        ++currentX;
+                    }
+                    break;
+                case 'down':
+                    if (valid(0, 1)) {
+                        ++currentY;
+                    }
+                    break;
+                case 'rotate':
+                    var rotated = rotate(current);
+                    if (valid(0, 0, rotated)) {
+                        current = rotated;
+                    }
+                    break;
+                case 'drop':
+                    while (valid(0, 1)) {
+                        ++currentY;
+                    }
+                    tick();
+                    break;
+            }
+        }
+
+        // checks if the resulting position of current shape will be feasible
+        function valid(offsetX, offsetY, newCurrent) {
+            offsetX = offsetX || 0;
+            offsetY = offsetY || 0;
+            offsetX = currentX + offsetX;
+            offsetY = currentY + offsetY;
+            newCurrent = newCurrent || current;
+
+            for (var y = 0; y < 4; ++y) {
+                for (var x = 0; x < 4; ++x) {
+                    if (newCurrent[y][x]) {
+                        if (typeof board[y + offsetY] == 'undefined'
+                            || typeof board[y + offsetY][x + offsetX] == 'undefined'
+                            || board[y + offsetY][x + offsetX]
+                            || x + offsetX < 0
+                            || y + offsetY >= ROWS
+                            || x + offsetX >= COLS) {
+                            if (offsetY == 1 && freezed) {
+                                lose = true; // lose if the current shape is settled at the top most row
+                                document.getElementById('playbutton1').disabled = false;
+                                document.getElementById('playbutton2').disabled = false;
+                                document.getElementById('playbutton3').disabled = false;
+                            }
+                            else {
+
+                            }
+                            return false;
+                        }
+                    }
+                }
+            }
+            return true;
+        }
+
+        function playButtonClicked() {
+            newGame();
+            document.getElementById("playbutton1").disabled = true;
+            document.getElementById("tetris1").style.display = "block";
+            document.getElementById("tetris2").style.display = "block";
+            document.getElementById("tetris3").style.display = "block";
+            document.getElementById("playbutton2").disabled = true;
+            document.getElementById("playbutton3").disabled = true;
+        }
+
+        function newGame() {
+            clearAllIntervals();
+            intervalRender = setInterval(render, 30);
+            init();
+            newShape();
+            lose = false;
+            interval = setInterval(tick, 400);
+            score = 0;
+            document.getElementById('score').style.display = 'block';
+        }
+
+        function clearAllIntervals() {
+            clearInterval(interval);
+            clearInterval(intervalRender);
+        }
+
+        document.body.onkeydown = function (e) {
+            var keys = {
+                37: 'left',
+                39: 'right',
+                40: 'down',
+                38: 'rotate',
+                32: 'drop'
+            };
+            if (typeof keys[e.keyCode] != 'undefined') {
+                e.preventDefault();
+                keyPress(keys[e.keyCode]);
+                render();
+            }
+        };
+
+        var canvas = document.getElementById('tetris3');
+        if (layout == "minimal") {
+            canvas = document.getElementById('tetris2');
+        }
+        if (layout == "compact") {
+            canvas = document.getElementById('tetris1');
+        }
+        var ctx = canvas.getContext('2d');
+        var W = 400, H = 400;
+        var BLOCK_W = W / COLS, BLOCK_H = H / ROWS;
+
+        // draw a single square at (x, y)
+        function drawBlock(x, y) {
+            ctx.fillRect(BLOCK_W * x, BLOCK_H * y, BLOCK_W - 1, BLOCK_H - 1);
+            ctx.strokeRect(BLOCK_W * x, BLOCK_H * y, BLOCK_W - 1, BLOCK_H - 1);
+        }
+
+        // draws the board and the moving shape
+        function render() {
+            ctx.clearRect(0, 0, W, H);
+
+            ctx.strokeStyle = 'black';
+            for (var x = 0; x < COLS; ++x) {
+                for (var y = 0; y < ROWS; ++y) {
+                    if (board[y][x]) {
+                        ctx.fillStyle = colors[board[y][x] - 1];
+                        drawBlock(x, y);
+                    }
+                }
+            }
+
+            ctx.fillStyle = 'red';
+            ctx.strokeStyle = 'black';
+            for (var y = 0; y < 4; ++y) {
+                for (var x = 0; x < 4; ++x) {
+                    if (current[y][x]) {
+                        ctx.fillStyle = colors[current[y][x] - 1];
+                        drawBlock(currentX + x, currentY + y);
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
