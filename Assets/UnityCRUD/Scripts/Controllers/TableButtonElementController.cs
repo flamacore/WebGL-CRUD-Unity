@@ -24,6 +24,10 @@ namespace UnityCRUD.Scripts.Controllers
         public override void Initialize()
         {
             addButton.gameObject.SetActive(false);
+            if (MainView.CurrentTableName == dataContainer.tableName)
+            {
+                addButton.gameObject.SetActive(true);
+            }
             addButton.onClick.RemoveAllListeners();
             ElementBodyString = dataContainer.tableName;
             addButton.onClick.AddListener(() =>

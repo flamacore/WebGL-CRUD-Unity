@@ -36,3 +36,8 @@ Then build your project, throw it anywhere online and run :)
 
 P.S. Be mindful of CORS tho. More to read: https://docs.unity3d.com/Manual/webgl-networking.html
 
+
+## Third Party Notice
+
+This repository includes the following package to enable Copy and Paste for Unity WebGL projects.
+https://github.com/greggman/unity-webgl-copy-and-paste

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f34b52a7700e4c90bcf01ef4c6bdd103, type: 3}
   m_Name: UnityCRUDSettings
   m_EditorClassIdentifier: 
-  serverURL: http://34.65.75.222/
+  serverURL: 
   debugLog: 1
   debugLevel: 0

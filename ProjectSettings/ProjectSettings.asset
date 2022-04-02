@@ -500,15 +500,7 @@ PlayerSettings:
   openGLRequireES31: 0
   openGLRequireES31AEP: 0
   openGLRequireES32: 0
-  m_TemplateCustomTags:
-    AUTOLOAD: enable
-    BLOCKS: 
-    COPYRIGHT: 
-    FACEBOOK: 
-    INSTAGRAM: 
-    LAYOUT: minimal
-    NAVIGATION: disable
-    TWITTER: 
+  m_TemplateCustomTags: {}
   mobileMTRendering:
     Android: 1
     iPhone: 1
@@ -760,7 +752,7 @@ PlayerSettings:
   webGLDebugSymbols: 0
   webGLEmscriptenArgs: 
   webGLModulesDirectory: 
-  webGLTemplate: PROJECT:Ultiplate 20+
+  webGLTemplate: APPLICATION:Minimal
   webGLAnalyzeBuildSize: 0
   webGLUseEmbeddedResources: 0
   webGLCompressionFormat: 1
@@ -768,7 +760,8 @@ PlayerSettings:
   webGLLinkerTarget: 1
   webGLThreadsSupport: 0
   webGLDecompressionFallback: 1
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    WebGL: WEBGL_COPY_AND_PASTE_SUPPORT_TEXTMESH_PRO
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}

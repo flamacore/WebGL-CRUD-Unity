@@ -19,6 +19,7 @@ namespace UnityCRUD.Scripts.Views
                 GameObject cell = Instantiate(cellPrefab, contentParent.transform);
                 TableButtonElementController tableButtonElementController = cell.GetComponent<TableButtonElementController>();
                 tableButtonElementController.dataContainer = DatabaseDataContainer.Tables[i];
+                tableButtonElementController.addButton.gameObject.SetActive(true);
             }
             base.Initialize();
         }
